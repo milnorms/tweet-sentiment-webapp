@@ -1,38 +1,349 @@
-.App {
-  text-align: center;
+/* Applied to document */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* Setting Global Variables */
+:root {
+  --primary-theme-color:  #89d2ff;
+  --darker-theme-color:  #30acf9;
+  --even-darker-theme-color:  #0f4869;
+  --dull-theme-color:  #53798f;
+  --bg-color: #f7f7f7;
+  --10px-default: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--even-darker-theme-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* General Classes */
+
+/* Flex classes */
+.flex {
+  display: flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.justifyCenter {
+  justify-content: center;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.flexCol {
   display: flex;
   flex-direction: column;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Util classes */
+
+.displayNone {
+  display: none;
+}
+
+.padding {
+  padding: 2%;
+}
+
+.paddingHor {
+  padding: 0% 2%;
+}
+
+.marginTop {
+  margin-top: 1vw;
+}
+
+.card {
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.09);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+/* .card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+} */
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  padding: 2%;
+}
+
+/* Main search area */
+
+.searchArea {
+  position: relative;
+  /* border: 1px solid red; */
+  width: 100%;
+  justify-content: space-around;
+  padding: 15px 0px;
+}
+
+.searchInputsContainer {
+  /* border: 1px solid pink; */
+  /* float: left; */
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.searchInputsContainer input, select {
+  padding: 8px;
+  border-radius: var(--10px-default);
+}
+
+.searchInputsContainer input {
+  width: 100%;
+}
+
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBarContainer input {
+  margin-left: 10px;
+}
+
+.searchSubmit {
+  padding: 10px 18px;
+  border-radius: var(--10px-default);
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--even-darker-theme-color);
+  color: var(--bg-color);
+}
+
+.searchSubmit:hover {
+  cursor: pointer;
+}
+
+.csvIcon {
+  margin-left: 15px;
+}
+
+.csvIcon:hover {
+  cursor: pointer;
+}
+
+.displayedSearchTerm {
+  border: 1px solid purple;
+  position: absolute;
+}
+
+.searchForm {
+  /* border: 1px solid green; */
+  padding: 0px 30px;
+  font-weight: 600;
+  width: 75%;
+}
+
+.searchForm form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchForm input[type=submit] {
+  margin-left: 10px;
+}
+
+
+
+/* Applied to all pages as their main div container class */
+.mainContent {
+  border: 1px solid green;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* flex-direction: column; */
+}
+
+/* Displayed on each page when data is being loaded */
+.loadingView {
+  font-size: x-large;
+  font-weight:600;
+  height: 50vh;
+}
+
+/* General Classes end */
+
+/* Static elements */
+
+/* Title Styling */
+.title {
+  /* border: 1px solid rgb(0, 30, 128); */
+  display: flex;
+  width: 75%;
+  font-size: 20px;
+}
+
+.title h1 {
+  margin-left: 15px;
+}
+
+/* Navbar Styling */
+
+.navBarContainer {
+  /* border: 1px solid maroon; */
+  /* background-color: maroon; */
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  min-height: 80px;
+  justify-content: center;
+}
+
+.navBar {
+  /* border: 1px solid green; */
+  display: flex;
+  width: 75%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+/* Page button styling */
+.pageBtn {
+  /* border: 1px solid rgb(245, 131, 150); */
+  background-color: var(--primary-theme-color);
+  display: flex;
+  width: 20%;
+  height: 70%;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: var(--10px-default);
+  font-weight:600;
+  font-size: 20px;
+  color: var(--even-darker-theme-color);
 }
 
-.App-link {
-  color: #61dafb;
+.pageBtn:hover {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pageBtnActive {
+  background-color: var(--darker-theme-color);
+  color: whitesmoke;
+}
+
+/* Main header Styling */
+
+.mainHeaderContainer {
+  /* border: 1px solid maroon; */
+  display: flex;
+  width: 100%;
+  height: 6vw;
+  justify-content: center;
+  align-content: center;
+}
+
+/* Page Stylings */
+
+/* Sentiment Page Styling */
+
+/* .displayedSearchTerm {
+  border: 1px solid mediumaquamarine;
+  display: flex;
+  height: fit-content;
+  width: 28%;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  flex-wrap: wrap;
+  flex-grow: .5;
+} */
+
+.mainChart {
+ border: 1px solid red;
+ width: 45%;
+ position: relative;
+}
+
+.sideContent {
+  /* border: 1px solid dodgerblue; */
+  display: flex;
+  width: 45%;
+  justify-content: center;
+
+
+}
+
+.sentimentStats {
+  /* border: 1px solid maroon; */
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 25px;
+}
+
+.sentimentStats p {
+  display: flex;
+  flex-direction: column;
+  /* border-right: 1px solid black;
+  border-left: 1px solid black; */
+  /* border: 1px solid black; */
+  padding: 15px;
+}
+
+.sentimentIcon {
+  padding-top: var(--10px-default);
+  font-size: 30px;
+}
+
+/* Styling for the top sentiment (pos, neg neu) */
+.topSentiment {
+  color: red;
+}
+
+/* Wordcloud Page Styling */
+
+.wordCountContainer {
+  /* border: 1px solid rgb(25, 141, 23); */
+}
+
+.tagCloudContainer {
+  /* border: 1px solid rgb(141, 23, 104); */
+  width: 75%;
+}
+
+/* TweetPage Styling */
+
+.tweetEmbedContainer {
+  /* border: 1px solid rgb(0, 128, 28); */
+  display: flex;
+  width: 75%;
+  justify-content: space-evenly;
+}
+
+.tweetViewerContainer {
+  border: 2px solid var(--primary-theme-color);
+
+}
+
+.tweetEmbed {
+  border: 2px solid var(--primary-theme-color);
+  position: relative;
+  /* display: flex; */
+  padding: 40px;
+  border-radius: var(--10px-default);
+  min-height: 15vw;
+}
+
+.loadingSpinner {
+  position: absolute;
+  margin-left: 15%;
+  z-index: -10;
 }
