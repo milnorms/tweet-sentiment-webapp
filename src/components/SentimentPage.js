@@ -24,7 +24,7 @@ const SentimentPage = (props) => {
                 labels: {
                     // This more specific font property overrides the global property
                     font: {
-                        family: 'Roboto Mono'
+                        family: fontFamily
                     }
                 }
             },
@@ -54,7 +54,7 @@ const SentimentPage = (props) => {
             y: {
             ticks: {
                 font: {
-                family: 'Roboto Mono',
+                family: fontFamily,
                 size: 14
                 }
             }
@@ -151,26 +151,26 @@ const SentimentPage = (props) => {
 
     <div className="mainContent flexCol alignCenter justifyCenter">
                     
-        <div className="mainChart padding">
+        <div className="mainChart padding card">
             {/* <div className="displayedSearchTerm">
                 <p>{displayedSearchTerm}</p>
             </div> */}
             <BarChart chartData={mainChartData} options={options}/>
         </div>
 
-        <div className="sideContent paddingHor card">
+        <div className="sideContent paddingHor card sentimentStatsContainer">
 
             <div className="sentimentStats">
-                <p>
-                    {sentimentStats.percentPos}% Positive
+                <p className='sentimentPos' >
+                    {sentimentStats.percentPos}%
                     <FontAwesomeIcon className={`sentimentIcon ${(sentimentStats.percentPos === topSentiment) ? '' : ''}`} icon={faFaceSmile}/>
                 </p>
-                <p>
-                    {sentimentStats.percentNeg}% Negative
+                <p className='sentimentNeg'>
+                    {sentimentStats.percentNeg}%
                      <FontAwesomeIcon className={`sentimentIcon ${(sentimentStats.percentNeg === topSentiment) ? '' : ''}`} icon={faFaceAngry}/>
                 </p>
-                <p>
-                    {sentimentStats.percentNeu}% Neutral
+                <p className='sentimentNeu'>
+                    {sentimentStats.percentNeu}%
                     <FontAwesomeIcon className={`sentimentIcon ${(sentimentStats.percentNeu === topSentiment) ? '' : ''}`} icon={faFaceMeh}/>
                 </p>
             </div>

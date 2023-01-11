@@ -7,7 +7,7 @@
   --darker-theme-color:  #30acf9;
   --even-darker-theme-color:  #0f4869;
   --dull-theme-color:  #53798f;
-  --bg-color: #f7f7f7;
+  --bg-color: #f0f0f5;
   --10px-default: 10px;
 }
 
@@ -15,9 +15,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Nunito', sans-serif;
-  background-color: var(--bg-color);
+  /* background-color: var(--bg-color); */
   color: var(--even-darker-theme-color);
+  background-image: linear-gradient(120deg, #eff6ff 0%, #dbeafc 100%);
+  
 }
+
+
 
 /* General Classes */
 
@@ -63,15 +67,16 @@ body {
 }
 
 .card {
-  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.09);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 10px; /* 5px rounded corners */
+  background-color: rgb(245, 245, 245);
 }
 
 /* On mouse-over, add a deeper shadow */
-/* .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-} */
+.card:hover {
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.2);
+}
 
 .mainContainer {
   display: flex;
@@ -88,15 +93,20 @@ body {
   /* border: 1px solid red; */
   width: 100%;
   justify-content: space-around;
-  padding: 15px 0px;
+  padding-bottom: 20px;
+}
+
+.spacer {
+  opacity: 0;
+  width: 50px;
 }
 
 .searchInputsContainer {
   /* border: 1px solid pink; */
   /* float: left; */
   display: flex;
-  justify-content: space-between;
-  width: 30%;
+  justify-content: space-around;
+  /* width: 100%; */
 }
 
 .searchInputsContainer input, select {
@@ -105,7 +115,7 @@ body {
 }
 
 .searchInputsContainer input {
-  width: 100%;
+  min-width: 180px;
 }
 
 .searchBarContainer {
@@ -124,6 +134,7 @@ body {
   font-family: 'Nunito', sans-serif;
   background-color: var(--even-darker-theme-color);
   color: var(--bg-color);
+  margin-left: var(--10px-default);
 }
 
 .searchSubmit:hover {
@@ -156,15 +167,15 @@ body {
   align-items: center;
 }
 
-.searchForm input[type=submit] {
+/* .searchForm input[type=submit] {
   margin-left: 10px;
-}
+} */
 
 
 
 /* Applied to all pages as their main div container class */
 .mainContent {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: flex;
   width: 100%;
   height: 100vh;
@@ -190,6 +201,7 @@ body {
   display: flex;
   width: 75%;
   font-size: 20px;
+  margin-top: -20px;
 }
 
 .title h1 {
@@ -267,7 +279,7 @@ body {
 } */
 
 .mainChart {
- border: 1px solid red;
+ /* border: 1px solid red; */
  width: 45%;
  position: relative;
 }
@@ -281,6 +293,10 @@ body {
 
 }
 
+.sentimentStatsContainer {
+  margin-top: 20px;
+}
+
 .sentimentStats {
   /* border: 1px solid maroon; */
   display: flex;
@@ -291,21 +307,34 @@ body {
 
 .sentimentStats p {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
   /* border-right: 1px solid black;
   border-left: 1px solid black; */
   /* border: 1px solid black; */
-  padding: 15px;
+  padding: 5px;
 }
 
 .sentimentIcon {
-  padding-top: var(--10px-default);
+  /* padding-top: var(--10px-default); */
+  padding-left: var(--10px-default);
   font-size: 30px;
 }
 
 /* Styling for the top sentiment (pos, neg neu) */
 .topSentiment {
   color: red;
+}
+
+.sentimentPos {
+  color: rgb(67, 142, 108);
+}
+.sentimentNeg {
+  color: rgb(143, 50, 66);
+}
+.sentimentNeu {
+  color: rgb(223, 193, 24);
 }
 
 /* Wordcloud Page Styling */
@@ -317,6 +346,7 @@ body {
 .tagCloudContainer {
   /* border: 1px solid rgb(141, 23, 104); */
   width: 75%;
+  padding: var(--10px-default);
 }
 
 /* TweetPage Styling */

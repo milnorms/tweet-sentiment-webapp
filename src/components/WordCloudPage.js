@@ -35,14 +35,15 @@ const getWordCountData = () => {
     // Creating new array with the correct keys for wordcloud component
     return jsonData.wordcount.map((data) => {
         return {
-            value: `  ${data.word}  `,
+            value: `${data.word}`,
             // value: data.word,
             count: data.count,
                 // props below will be passed to tag component
             props: {
                 title: data.count,
                 style: {
-                    color: getColor(data.count)
+                    color: getColor(data.count),
+                    padding: '5px'
                   }
             }
     }})
@@ -61,10 +62,10 @@ if (!isFirstLoad) {
 
   return (
     <div className='mainContent alignCenter flexCol'>
-        <div className="wordCountContainer marginTop">
+        <div className="wordCountContainer marginTop ">
             <h1>{wordCountData.length} Most Common Words</h1>
         </div>
-        <div className="tagCloudContainer marginTop">
+        <div className="tagCloudContainer marginTop card">
             <TagCloud
                 minSize={20}
                 maxSize={70}

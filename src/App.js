@@ -204,6 +204,7 @@ function App() {
                       ))
                     }
                   </select>
+                  <div className='spacer'>.</div>
                 {/* <label htmlFor="searchInput">{searchTypeLabel}:</label> */}
                 <div className="searchBarContainer">
                 {/* https://codepen.io/priyesh-diukar/pen/qqXyKx */}
