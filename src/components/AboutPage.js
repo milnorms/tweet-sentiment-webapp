@@ -12,7 +12,7 @@ const AboutPage = () => {
     },
     {
       category: 'VADER 🤖',
-      text: 'To estimate the sentiment of tweets, we use the VADER (Valence Aware Dictionary and sEntiment Reasoner) package in Python. VADER is a lexicon and rule-based sentiment analysis tool that is specifically attuned to microblog-like contexts, such as Twitter. VADER is sensitive both the polarity and the intensity of sentiments expressed in social media contexts.'
+      text: 'To estimate the sentiment of tweets, we used the VADER (Valence Aware Dictionary and sEntiment Reasoner) package in Python. VADER is a lexicon and rule-based sentiment analysis tool that is specifically attuned to microblog-like contexts, such as Twitter. VADER is sensitive both the polarity and the intensity of sentiments expressed in social media contexts.'
     },
     {
       category: 'Polarity 🎭',
