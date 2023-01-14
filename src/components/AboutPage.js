@@ -56,9 +56,9 @@ const AboutPage = () => {
         </div>
 
         <div className="marginTop card padding textCardWidth">
-          <h1>Created By 🧍‍♂️</h1>
+          <h1>Created By:</h1>
           <p>
-            <a href="https://github.com/milnorms/tweet-sentiment-webapp" target="_blank" rel="noopener noreferrer">Github</a>
+            <a href="https://github.com/milnorms/tweet-sentiment-webapp" target="_blank" rel="noopener noreferrer">milnorms on Github</a>
           </p>
         </div>
 
