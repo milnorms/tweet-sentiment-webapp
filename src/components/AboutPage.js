@@ -37,6 +37,7 @@ const AboutPage = () => {
           </div>
           ))
         }
+
         <div className="marginTop card padding textCardWidth">
           <h1>Credits 🎥</h1>
           <p>
@@ -51,6 +52,13 @@ const AboutPage = () => {
                 <a href="https://www.tweepy.org/" target="_blank" rel="noopener noreferrer">Tweepy</a>
               </li>
             </ul>
+          </p>
+        </div>
+
+        <div className="marginTop card padding textCardWidth">
+          <h1>Created By 🧍‍♂️</h1>
+          <p>
+            <a href="https://github.com/milnorms/tweet-sentiment-webapp" target="_blank" rel="noopener noreferrer">Github</a>
           </p>
         </div>
 
