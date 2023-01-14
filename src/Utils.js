@@ -2,7 +2,8 @@
 const getColor  = (value) => {
 
     // Handle issues with input
-    if (typeof value === "undefined") { value = 0}
+    // value = (typeof value === "undefined") ? 0 : value
+    // if (typeof value === "undefined") { value = 0}
     // Color styling constants (HSL). Going for a blue -> violet theme
     // Starting hue (value of 0 will yield this hue. every higher value changes color)
     const BASE_HUE = 175;

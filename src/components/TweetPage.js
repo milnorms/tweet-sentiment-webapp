@@ -157,16 +157,22 @@ const TweetPage = (props) => {
       }
     })) : ([])
 
+    // Set backgroundColor to default text color if json data hasnt been loaded
+    const backgroundColor = hasData ? (
+      (ctx) => {
+        // console.log(ctx, ctx['index'])
+        const pol = jsonData['sentiment'][ctx['index']]['polarity']
+        return getColor(pol*30)
+      }
+    ) : (
+      '#0f4869'
+    )
+
     const chartData = {
         datasets: [{
           label: 'Tweets',
           data: data,
-          // backgroundColor: '#0f4869'
-          backgroundColor: (ctx) => {
-            // console.log(ctx, ctx['index'])
-            const pol = jsonData['sentiment'][ctx['index']]['polarity']
-            return getColor(pol*30)
-          }
+          backgroundColor: backgroundColor
         }],
       };
 
