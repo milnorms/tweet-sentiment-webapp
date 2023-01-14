@@ -1,78 +1,181 @@
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import '../App.css';
-import TweetViewer from './TweetViewer';
-// import LoadingSpinner from '../assets/images/loading_spinner.svg'
+import LineChart from './LineChart';
 
-// Package to embed tweets based on ID. Ref: https://www.npmjs.com/package/react-twitter-embed
-// import { TwitterTweetEmbed } from 'react-twitter-embed';
+// Importing libs
+import 'chartjs-adapter-date-fns';
+import { parseISO } from 'date-fns/esm';
+
+import { getColor } from '../Utils';
 
 
 const TweetPage = (props) => {
-// Loading in vars from props
-const {isFirstLoad, term, jsonData } = props;
+    // Loading in lets from props
+    const {isFirstLoad, term, jsonData } = props;
 
-// CONSTANTS
+    const [hasData, setHasData] = useState(false);
 
-// Configurations for tweet embed component. Ref: https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-parameter-reference
-const tweetEmbedOptions = {height: 250, conversation: 'none', cards: 'hidden'}
+  useEffect(() => {
+    if (!isFirstLoad) {
+      setHasData(true)
+    }
+  }, [isFirstLoad]);
 
-// Setting default variables with empty data
-let topTweets = {
-    posTweet: '',
-    negTweet: ''
+  // Utility functions
+
+  // Breaks str down into an arr of substrings split every n spaces
+  function breakStr(str, spaces) {
+    let newStr = "";
+    let spaceCount = 0;
+
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === " ") {
+            spaceCount++;
+        }
+        if (spaceCount === spaces) {
+            newStr += "\n";
+            spaceCount = 0;
+        } else {
+            newStr += str[i];
+        }
+    }
+
+  return newStr.split('\n')
 }
 
-// Helper functions
-const getTopTweets = (resJson) => {
-// Sorting twees by polarity in descending order
-const sorted = resJson['sentiment'].sort((a, b) => (a.polarity < b.polarity) ? 1 : -1)
 
-return {
-    posTweet: sorted[0],
-    negTweet: sorted[sorted.length - 1]
-}}
 
-const initDataLoad = () => {
-    topTweets = getTopTweets(jsonData)
-}
-// Main Execution for loaded data
-if (!isFirstLoad) {
-    initDataLoad()
-}
+    // Setting constants
+    const fontFamily = 'Nunito'
+    // Spaces before linebreaks in tooltip body
+    const spacesBeforeBreak = 20
+
+    // Constants
+    // Chartjs config options. Ref: https://www.chartjs.org/docs/latest/configuration/title.html
+    const options = {
+      showLine: false,
+      pointRadius: 5,
+        plugins: {
+          tooltip: {
+            bodyFont: {
+              size: 15
+            },
+            titleFont: {
+              size: 16
+            },
+            boxWidth: 10,
+            boxHeight: 20,
+            padding: 15,
+            displayColors: false,
+            callbacks: {
+              title: (item) => {
+                let pol = item[0]['parsed']['y']
+                return `Polarity: ${pol}`
+              },
+              beforeLabel: (item) => {
+                const { dataIndex } = item
+                let text = parseISO(jsonData['sentiment'][dataIndex]['timestamp'])
+                return `${text}\n`
+
+              },
+              label: (item) => {
+                const { dataIndex } = item
+                let text = jsonData['sentiment'][dataIndex]['tweet']
+                // Add linebreaks to str
+                return breakStr(text, spacesBeforeBreak)
+
+              }
+                
+            }
+          },
+            legend: {
+                labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        family: fontFamily
+                    }
+                }
+            },
+            title: {
+                display: true,
+                font: {
+                    family: fontFamily,
+                    size: 22
+                },
+                text: `Most recent tweets of: ${term}`,
+                padding: {
+                    top: 0,
+                    bottom: 20
+                },
+            },
+
+        },
+        scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: 'minute'
+            },
+                ticks: {
+                  // callback: (value, index, ticks) => {
+                  //   return value
+                  // },
+                  font: {
+                    family: fontFamily,
+                    size: 14
+                  }
+                }
+              },
+            y: {
+            ticks: {
+                font: {
+                family: fontFamily,
+                size: 14
+                }
+            },
+          title: {
+              display: true,
+              text: 'Polarity',
+              font: {
+                family: fontFamily,
+                size: 14
+                }
+            },
+
+            }
+        }
+    }
+
+    
+
+    // Set data to empty arr if json data hasnt been loaded
+    const data = hasData ? (jsonData['sentiment'].map(tweet => {
+      return {
+        x: parseISO(tweet['timestamp']), 
+        y: tweet['polarity']
+      }
+    })) : ([])
+
+    const chartData = {
+        datasets: [{
+          label: 'Tweets',
+          data: data,
+          // backgroundColor: '#0f4869'
+          backgroundColor: (ctx) => {
+            // console.log(ctx, ctx['index'])
+            const pol = jsonData['sentiment'][ctx['index']]['polarity']
+            return getColor(pol*30)
+          }
+        }],
+      };
+
   return (
-    <div className='mainContent alignCenter flexCol'>
-        <div className="marginTop">
-            <h1>Top Tweets</h1>
+    <div className='mainContent flexCol alignCenter justifyCenter'>
+        <div className="mainChartWider padding card">
+        <LineChart chartData={chartData} options={options}/>
         </div>
-
-        <div className="tweetEmbedContainer flexRow marginTop">
-            <div className="tweetEmbed">
-                <h2>👍 Most Positive Tweet:</h2>
-
-                {
-                    (!isFirstLoad) ? 
-                    (  
-                        <>  
-                        <TweetViewer tweet={topTweets.posTweet}></TweetViewer>
-                        </>) : 
-                        (<></>)
-                }
-
-            </div>
-            <div className="tweetEmbed">
-                <h2>👎 Most Negative Tweet:</h2>
-                {
-                    (!isFirstLoad) ? 
-                    (  
-                        <>     
-                            <TweetViewer tweet={topTweets.negTweet}></TweetViewer>
-                        </>) : 
-                        (<></>)
-                }
-
-            </div>
-
-        </div>
+        {/* <div className='chartCardFiller card sideContent sentimentStatsContainer'></div> */}
 
     </div>
   )

@@ -11,7 +11,7 @@ import { faFaceSmile, faFaceMeh, faFaceAngry } from '@fortawesome/free-solid-svg
 const SentimentPage = (props) => {
 
     // Loading in vars from props
-    const {isFirstLoad, term, jsonData } = props;
+    const { isFirstLoad, term, jsonData } = props;
     
     // Setting constants
     const fontFamily = 'Nunito'
@@ -34,7 +34,7 @@ const SentimentPage = (props) => {
                     family: fontFamily,
                     size: 22
                 },
-                text: `Sentiment Value of ${term}`,
+                text: `Sentiment Value of: ${term}`,
                 padding: {
                     top: 0,
                     bottom: 20

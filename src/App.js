@@ -22,33 +22,15 @@ import { config } from './Constants'
 
   /* 
     TODO:
+    [] README
+      [] explain limitations of data and how data is sourced (tweepy api, tweets from 7 days etc)
+      [] explain stack (python to retrieve and process tweets, sanic server, react frontend)
     [] PAGES
       [] **ALL**
-        [X] fix error handling
-        [X] add loading spinner
-      [] **tweetpage**
-        [] add css classes
-        [] change top tweet page to page with line graph of all tweets and sentimenta
-        [] create tooltips for graph that contain raw tweet content and sentiment value by color (pos, neg, neu)
-      [] ***about Page***
-        [] add formating
-        [] add content
-          [] research sentiment analyzer. eg ref: https://www.danielsoper.com/sentimentanalysis/default.aspx
-          [] research vader
-          [] explain limitations of data and how data is sourced (tweepy api, tweets from 7 days etc)
-          [] explain stack (python to retrieve and process tweets, sanic server, react frontend)
-        [] styling
-    [] SEARCH AREA 
-      [X] create csv download button
-      [X] convert json to csv functionality. ref: https://stackoverflow.com/questions/8847766/how-to-convert-json-to-csv-format-and-store-in-a-variable
-      [X] csv needs to match example.csv found in server folder
+        [] add first visit modal. Explain how to use the app (twitter search queries), the visualizations, and the download csv
     [] MISC
       [] add tooltip on hover to explain certain elements. eg. 'wordcloud page top n words: (exclu. search term(s))'
       [] seperate app.css into files for each page
-    [] STYLING
-      [X] change font?
-      [] use floating card design
-
   */
 
 
@@ -66,14 +48,6 @@ function App() {
 
   // API URL
   const HOST = config.url.API_URL
-
-  // Dev api
-  // const HOST = 'http://0.0.0.0:8000'
-
-  // Hostname of API
-  // HOST = 'https://tweet-sentiment-analysis-api-1h12-main-magw6pcwcq-wm.a.run.app'
-
-
 
   // Number of tweets to be retrieved
   const NUM_ITEMS = 100;
@@ -171,7 +145,7 @@ function App() {
         setIsError(false)
         setIsLoading(false)
         // Setting final search term to be displayed
-        setDisplayedSearchTerm(`${searchTypeLabel === '#' ? searchTypeLabel : searchTypeLabel + ': '}${searchInput} (${resJson.sentiment.length} tweets)`)
+        setDisplayedSearchTerm(`${searchTypeLabel === '#' ? searchTypeLabel : (searchTypeLabel === "Keyword" ? '' : '@' )}${searchInput} (${resJson.sentiment.length} tweets)`)
 
       } else {
         throw new Error(`${res.status} ${res.statusText}`);
@@ -221,17 +195,12 @@ function App() {
       </div>
 
       <Navbar currentPageId={currentPageId} senPageId={senPageId} wcPageId={wcPageId} tweetPageId={tweetPageId} aboutPageId={aboutPageId} handlePageClick={handlePageClick}></Navbar>
-
-      {/* <div className="mainHeaderContainer">
-        <h1>Main header</h1>
-      </div> */}
       
       {
         (isError) ? (
           <h2>An error has occurred.</h2>
         ) : (
-              // If data has NOT been loaded
-              // (typeof tweetData.sentiment === 'undefined') 
+
               // If data has NOT been loaded
               (isLoading) ? (
 
@@ -241,7 +210,7 @@ function App() {
                     <SentimentPage isFirstLoad={isFirstLoad} term={displayedSearchTerm} jsonData={tweetData} />
                   ) : (
                     (currentPageId === wcPageId) ? (
-                      <WordCloudPage isFirstLoad={isFirstLoad} term={displayedSearchTerm} jsonData={tweetData} />
+                      <WordCloudPage isFirstLoad={isFirstLoad} jsonData={tweetData}/>
                       ) :
                     (currentPageId === tweetPageId) ? (
                       <TweetPage isFirstLoad={isFirstLoad} term={displayedSearchTerm} jsonData={tweetData} />

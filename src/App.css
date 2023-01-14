@@ -9,6 +9,7 @@
   --dull-theme-color:  #53798f;
   --bg-color: #f0f0f5;
   --10px-default: 10px;
+  --chartCardHeight: 90px;
 }
 
 body {
@@ -19,6 +20,15 @@ body {
   color: var(--even-darker-theme-color);
   background-image: linear-gradient(120deg, #eff6ff 0%, #dbeafc 100%);
   
+}
+
+a {
+  text-decoration: none;
+  font-weight:700;
+}
+
+p {
+  font-size: 1.1em;
 }
 
 
@@ -63,20 +73,25 @@ body {
 }
 
 .marginTop {
-  margin-top: 1vw;
+  margin-top: 1.5vw;
 }
 
 .card {
-  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.09);
   transition: 0.3s;
   border-radius: 10px; /* 5px rounded corners */
   background-color: rgb(245, 245, 245);
 }
 
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.2);
+/* For cards with text that need a consistent width */
+.textCardWidth {
+  width: 65%;
 }
+
+/* On mouse-over, add a deeper shadow */
+/* .card:hover {
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.2);
+} */
 
 .mainContainer {
   display: flex;
@@ -178,7 +193,8 @@ body {
   /* border: 1px solid green; */
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 65vh;
+  /* height: 100vh; */
   /* align-items: center; */
   /* justify-content: space-between; */
   /* flex-direction: column; */
@@ -284,6 +300,11 @@ body {
  position: relative;
 }
 
+.mainChartWider {
+  width: 60%;
+  position: relative;
+}
+
 .sideContent {
   /* border: 1px solid dodgerblue; */
   display: flex;
@@ -302,6 +323,7 @@ body {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  height: var(--chartCardHeight);
   font-size: 25px;
 }
 
@@ -334,22 +356,30 @@ body {
   color: rgb(143, 50, 66);
 }
 .sentimentNeu {
-  color: rgb(223, 193, 24);
+  color: rgb(185, 134, 4);
 }
 
 /* Wordcloud Page Styling */
-
-.wordCountContainer {
-  /* border: 1px solid rgb(25, 141, 23); */
-}
 
 .tagCloudContainer {
   /* border: 1px solid rgb(141, 23, 104); */
   width: 75%;
   padding: var(--10px-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* TweetPage Styling */
+
+/* Begin New */
+
+.chartCardFiller {
+  height: var(--chartCardHeight);
+  opacity: 0;
+}
+
+/* End New */
 
 .tweetEmbedContainer {
   /* border: 1px solid rgb(0, 128, 28); */
