@@ -27,7 +27,7 @@ const AboutPage = () => {
         </div>
         <div className="marginTop card padding textCardWidth">
           <h1>Introduction 👋</h1>
-          <p>Welcome to our website, where we display tweet sentiment data visualizations. Our goal is to provide a clear and easy-to-use platform for exploring and analyzing current public opinion on Twitter. This site was heavily inspired by the amazing tweet sentiment visuzalizer <a href="https://www.csc2.ncsu.edu/faculty/healey/tweet_viz/tweet_app/" target="_blank" rel="noopener noreferrer">web app</a> by Healy & Ramaswamy at NCSU.</p>
+          <p>This website displays tweet sentiment data visualizations of the latest 100 tweets of a twitter search query. Our goal is to provide a clear and easy-to-use platform for exploring and analyzing current public opinion on Twitter. This site was heavily inspired by the amazing tweet sentiment visuzalizer <a href="https://www.csc2.ncsu.edu/faculty/healey/tweet_viz/tweet_app/" target="_blank" rel="noopener noreferrer">web app</a> by Healy & Ramaswamy at NCSU.</p>
         </div>
         {
           textData.map((value) => (
