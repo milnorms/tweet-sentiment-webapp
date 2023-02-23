@@ -1,7 +1,7 @@
 // Constants.js
 const prod = {
     url: {
-     API_URL: 'http://142.93.11.57:8000'
+     API_URL: 'https://142.93.11.57:8000'
     }
    }
    
