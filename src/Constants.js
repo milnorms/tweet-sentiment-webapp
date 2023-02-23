@@ -1,7 +1,7 @@
 // Constants.js
 const prod = {
     url: {
-     API_URL: 'https://tweet-sentiment-analysis-api-1h12-main-magw6pcwcq-wm.a.run.app'
+     API_URL: 'https://142.93.11.57:8000'
     }
    }
    
