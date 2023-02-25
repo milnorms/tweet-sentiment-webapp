@@ -1,7 +1,8 @@
 // Constants.js
 const prod = {
+    // Replace this later!!
     url: {
-     API_URL: 'https://142.93.11.57:8000'
+     API_URL: 'https://milnorms.rocks:8443'
     }
    }
    
